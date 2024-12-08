@@ -395,6 +395,35 @@ export interface ApiAudioAudio extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiCounterCounter extends Struct.SingleTypeSchema {
+  collectionName: 'counters';
+  info: {
+    description: '';
+    displayName: 'counter';
+    pluralName: 'counters';
+    singularName: 'counter';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::counter.counter'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    streaming: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -905,6 +934,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::audio.audio': ApiAudioAudio;
+      'api::counter.counter': ApiCounterCounter;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

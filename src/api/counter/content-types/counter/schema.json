@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "counters",
+  "info": {
+    "singularName": "counter",
+    "pluralName": "counters",
+    "displayName": "counter",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "streaming": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
